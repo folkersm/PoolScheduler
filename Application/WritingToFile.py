@@ -32,5 +32,12 @@ def read_table(id):
   for row in rows:
     print(row)
 
-for i in range(100):
-  read_table(i)
+def quack():
+  print('quack')
+
+#
+# for i in range(100):
+#   insert_into_db('John'+str(i), 'Fortnite')
+#
+# for i in range(100):
+#   read_table(i)

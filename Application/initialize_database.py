@@ -30,7 +30,7 @@ def create_table(conn, create_table_sql):
 
 
 def main():
-        database = r"C:\Users\Owner\Desktop\Scheduler\Application\Schedulerdatabase.db"
+        database = r"C:\Users\Max\Desktop\Programz\Scheduler\Application\Schedulerdatabase.db"
 
         sql_create_projects_table = """ CREATE TABLE IF NOT EXISTS employee (
                                         id integer PRIMARY KEY,

@@ -21,7 +21,6 @@ class Application(tk.Frame):
     def say_hi(self):
         self.click_count += 1
         print("you've clicked " +str(self.click_count) + " times")
-        self.create_widgets()
 
 
 
