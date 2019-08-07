@@ -58,19 +58,167 @@
 #     root = tk.Tk()
 #     Example(root).pack(side="top", fill="both", expand=True)
 #     root.mainloop()
+# import tkinter as tk
+#
+# class AutoScrollbar(tk.Scrollbar):
+#     # a scrollbar that hides itself if it's not needed.  only
+#     # works if you use the grid geometry manager.
+#     def set(self, lo, hi):
+#         if float(lo) <= 0.0 and float(hi) >= 1.0:
+#             # grid_remove is currently missing from Tkinter!
+#             self.tk.call("grid", "remove", self)
+#         else:
+#             self.grid()
+#             tk.Scrollbar.set(self, lo, hi)
+#     # def pack(self, **kw):
+#     #     raise TclError, "cannot use pack with this widget"
+#     # def place(self, **kw):
+#     #     raise TclError, "cannot use place with this widget"
+#
+#
+# root = tk.Tk()
+#
+# vscrollbar = AutoScrollbar(root)
+# vscrollbar.grid(row=0, column=1, sticky=tk.N+tk.S)
+# hscrollbar = AutoScrollbar(root, orient=tk.HORIZONTAL)
+# hscrollbar.grid(row=1, column=0, sticky=tk.E+tk.W)
+#
+# canvas = tk.Canvas(root,
+#                 yscrollcommand=vscrollbar.set,
+#                 xscrollcommand=hscrollbar.set)
+# canvas.grid(row=0, column=0, sticky=tk.N+tk.S+tk.E+tk.W)
+#
+# vscrollbar.config(command=canvas.yview)
+# hscrollbar.config(command=canvas.xview)
+#
+# # make the canvas expandable
+# root.grid_rowconfigure(0, weight=1)
+# root.grid_columnconfigure(0, weight=1)
+#
+# #
+# # create canvas contents
+#
+# frame = tk.Frame(canvas)
+# frame.rowconfigure(1, weight=1)
+# frame.columnconfigure(1, weight=1)
+#
+# rows = 77
+# for i in range(1,rows):
+#     for j in range(1,3):
+#         button = tk.Button(frame, padx=7, pady=7, text="[%d,%d]" % (i,j))
+#         button.grid(row=i, column=j, sticky='news')
+#
+# canvas.create_window(0, 0, anchor=tk.NW, window=frame)
+#
+# frame.update_idletasks()
+#
+# canvas.config(scrollregion=canvas.bbox("all"))
+#
+# root.mainloop()
+# import sqlite3 as sql
+# conn = sql.connect(r'Schedulerdatabase.db')
+# c = conn.cursor()
+# dataCopy = c.execute("select count(*) from employee")
+# values = dataCopy.fetchone()
+# print(values[0])
 
-from tkinter import *
+import math
+import os
+import random
+import re
+import sys
 
-master = Tk()
 
-scrollbar = Scrollbar(master)
-scrollbar.pack(side=RIGHT, fill=Y)
+#
+# Complete the 'alphaBeta' function below.
+#
+# The function is expected to return an INTEGER.
+# The function accepts INTEGER_ARRAY pile as parameter.
+#
+#!/bin/python
 
-listbox = Listbox(master, yscrollcommand=scrollbar.set)
-for i in range(1000):
-    listbox.insert(END, str(i))
-listbox.pack(side=LEFT, fill=BOTH)
+import math
+import os
+import random
+import re
+import sys
 
-scrollbar.config(command=listbox.yview)
+#
+# Complete the 'nuclearFusion' function below.
+#
+# The function accepts INTEGER_ARRAY elements as parameter.
+#
+#
+def nuclearFusion(elementss):
+    elements = []
+    winners = []
+    losers = []
+    for i in elementss:
+        elements.append(i)
+    def is_end(list, n):
+        for i in range(len(list)):
+            if n == list[i]:
+                return False
+            else:
+                pass
+        return True
+    def check_ends(list):
+        out = []
+        for x in range(len(list)):
+            if is_end(elements, x+2):
+                out.append(x)
+        outt = []
+        for x in range(len(out)):
+            if elements[out[x]] not in outt:
+                outt.append(elements[out[x]])
+        return outt
 
-mainloop()
+    def run_connects(list):
+        cur_lose = []
+        connects = check_ends(list)
+        for i in range(len(connects)):
+            end_nodes = []
+            for j in range(len(list)):
+                if connects[i] == list[j]:
+                    end_nodes.append(j + 2)
+            print(len(end_nodes))
+            if len(end_nodes) > 1:
+                if len(end_nodes) % 2 == 1:
+                    print(len(end_nodes)//2)
+                    for k in range(len(end_nodes)//2):
+                        print(end_nodes[0:1])
+                        losers.append(end_nodes[0:1])
+                        cur_lose.append(end_nodes[0:1])
+                        end_nodes.remove(end_nodes[0:1])
+            print(cur_lose)
+
+        for i in cur_lose:
+            print(i)
+            list.remove(list[i])
+
+    run_connects(elements)
+    return losers
+
+
+
+
+
+if __name__ == '__main__':
+
+    n = int(input().strip())
+
+    elements = map(int, input().rstrip().split())
+
+    print(nuclearFusion(elements))
+
+#
+# def is_end(list, n):
+#     for i in range(len(list)):
+#         if n == list[i]:
+#             return False
+#         else:
+#             pass
+#     return True
+# for i in range(8):
+#
+#     print(is_end([1, 1, 1, 2, 2, 4, 4, 4], i + 2))

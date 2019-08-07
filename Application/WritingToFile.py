@@ -10,9 +10,7 @@ def insert_into_db(fname, lname, outdoor=1, indoor=1, manage=0, desired_hours=40
   employee_truncated = (fname, lname, outdoor, indoor, manage, desired_hours)
   c.execute(sql, employee_truncated)
   conn.commit()
-  id = c.lastrowid
   conn.close()
-  return id
 
 def delete(id):
   conn = sqlite3.connect(r'Schedulerdatabase.db')
@@ -30,7 +28,7 @@ def read_table(id):
   rows = c.fetchall()
 
   for row in rows:
-    print(row)
+    return(row)
 
 def quack():
   print('quack')
